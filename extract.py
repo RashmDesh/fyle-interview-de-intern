@@ -1,5 +1,8 @@
 # Your imports go here
 import logging
+import json
+import os
+
 
 logger = logging.getLogger(__name__)
 
@@ -17,5 +20,15 @@ def extract_amount(dirpath: str) -> float:
 
     logger.info('extract_amount called for dir %s', dirpath)
     # your logic goes here
+    #join path
+    join_path=os.path.join(dirpath,'expected.json')
 
-    return 0.0
+    #open the file
+    f=open(join_path,'r')
+    data=json.load(f)
+
+    # coping extracted_amount
+    amount=data['amount']
+    #print(amount)
+
+    return amount
